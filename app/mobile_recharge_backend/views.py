@@ -31,7 +31,12 @@ class CustomerAPI(APIView):
         return JsonResponse("No customer found",safe=False)
     
     def post(self,request):
-        pass
+        customer = CustomerSerializer(data=request.data)
+
+        if customer.is_valid():
+            customer.save
+            return JsonResponse("Customer added successfully",safe=False)
+        return JsonResponse("Failed to add customer",safe=False)
 
 class RechargeAPI(APIView):
     def get(self,request):
@@ -48,4 +53,13 @@ class RechargeAPI(APIView):
         if recharge.is_valid():
             recharge.save()
             return JsonResponse("Recharge successfull",safe=False)
-        return JsonResponse("No plans and customer found",safe=False)
+        return JsonResponse("Recharge failed",safe=False)
+
+class SpecificPlansAndCustomer(APIView):
+    def get(self,request,pk):
+        specific_customer = PlanAndCustomer.objects.filter(customer=pk)
+
+        if specific_customer:
+            customer_serializer = PlanAndCustomerSerializer(specific_customer,many=True)
+            return JsonResponse(customer_serializer.data,safe=False)
+        return JsonResponse(customer_serializer.data,safe=False)
