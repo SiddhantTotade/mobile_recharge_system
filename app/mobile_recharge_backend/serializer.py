@@ -17,7 +17,7 @@ class PlanSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        plans = RechargePlans.objects.create(plan_cost=validated_data['plan_cost'])
+        plans = RechargePlans.objects.create(plan_name=validated_data['plan_name'],plan_cost=validated_data['plan_cost'])
         return plans
 
 class PlanAndCustomerSerializer(serializers.ModelSerializer):
@@ -26,5 +26,5 @@ class PlanAndCustomerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        plans_and_customer = PlanAndCustomer.objects.create(plans=validated_data['plans'],customer=validated_data['customer'])
+        plans_and_customer = PlanAndCustomer.objects.create(plans=validated_data['plans'],customer=validated_data['customer'],taked_date=validated_data['taked_date'])
         return plans_and_customer

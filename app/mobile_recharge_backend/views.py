@@ -41,3 +41,11 @@ class RechargeAPI(APIView):
             plans_customer_serilaizer = PlanAndCustomerSerializer(plans_customer,many=True)
             return JsonResponse(plans_customer_serilaizer.data,safe=False)
         return JsonResponse("No plans and customer found".data,safe=False)
+    
+    def post(self,request):
+        recharge = PlanAndCustomerSerializer(data=request.data)
+
+        if recharge.is_valid():
+            recharge.save()
+            return JsonResponse("Recharge successfull",safe=False)
+        return JsonResponse("No plans and customer found",safe=False)
