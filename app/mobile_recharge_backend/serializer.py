@@ -17,5 +17,5 @@ class PlanSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        plans = RechargePlans.objects.create(recharge_plan=validated_data['recharge_plan'],customer=validated_data['customer'],taked_date=validated_data['taked_date'])
+        plans = RechargePlans.objects.create(plan_cost=validated_data['plan_cost'])
         return plans

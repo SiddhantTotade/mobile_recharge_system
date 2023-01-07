@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-v+&u3nu&q6bc1kgnz(3o@v=l_8@jn+_w76jpj+2%0)^7!1=*4p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -54,6 +54,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mobile_recharge_project.urls'
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
