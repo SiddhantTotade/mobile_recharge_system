@@ -34,7 +34,7 @@ class CustomerAPI(APIView):
         customer = CustomerSerializer(data=request.data)
 
         if customer.is_valid():
-            customer.save
+            customer.save()
             return JsonResponse("Customer added successfully",safe=False)
         return JsonResponse("Failed to add customer",safe=False)
 
