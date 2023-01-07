@@ -20,3 +20,24 @@ class PlansAPI(APIView):
             plans.save()
             return JsonResponse("Plan added successfully",safe=False)
         return JsonResponse("Failed to add plan",safe=False)
+
+class CustomerAPI(APIView):
+    def get(self,request):
+        all_customers = Customer.objects.all()
+
+        if all_customers:
+            customer_serializer = CustomerSerializer(all_customers,many=True)
+            return JsonResponse(customer_serializer.data,safe=False)
+        return JsonResponse("No customer found",safe=False)
+    
+    def post(self,request):
+        pass
+
+class RechargeAPI(APIView):
+    def get(self,request):
+        plans_customer = PlanAndCustomer.objects.all()
+
+        if plans_customer:
+            plans_customer_serilaizer = PlanAndCustomerSerializer(plans_customer,many=True)
+            return JsonResponse(plans_customer_serilaizer.data,safe=False)
+        return JsonResponse("No plans and customer found".data,safe=False)

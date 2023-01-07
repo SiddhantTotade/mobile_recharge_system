@@ -10,7 +10,6 @@ class RechargePlans(models.Model):
 
 class Customer(models.Model):
     customer_name=models.CharField(max_length=20,null=True,blank=True)
-    taked_date=models.DateField()
     
     def __str__(self):
         return str(self.customer_name)
@@ -18,3 +17,4 @@ class Customer(models.Model):
 class PlanAndCustomer(models.Model):
     plans = models.ForeignKey(RechargePlans,null=True,blank=True,on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer,null=True,blank=True,on_delete=models.CASCADE)
+    taked_date=models.DateField(default=None)

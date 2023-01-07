@@ -19,3 +19,12 @@ class PlanSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         plans = RechargePlans.objects.create(plan_cost=validated_data['plan_cost'])
         return plans
+
+class PlanAndCustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlanAndCustomer
+        fields = '__all__'
+
+    def create(self, validated_data):
+        plans_and_customer = PlanAndCustomer.objects.create(plans=validated_data['plans'],customer=validated_data['customer'])
+        return plans_and_customer
